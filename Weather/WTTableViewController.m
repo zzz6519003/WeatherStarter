@@ -152,7 +152,21 @@ switch (section) {
     
     // Configure the cell...
     
-    
+    NSDictionary *daysWeather;
+    switch (indexPath.section) {
+        case 0: {
+            daysWeather = [self.weather currentCondition];
+            break;
+        }
+        case 1: {
+            NSArray *upcomingWeather = [self.weather upcomingWeather];
+            daysWeather = [upcomingWeather objectAtIndex:indexPath.row];
+        }
+            
+        default:
+            break;
+    }
+    cell.textLabel.text = [daysWeather weatherDescription];
     return cell;
 }
 
