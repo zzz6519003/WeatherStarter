@@ -11,6 +11,7 @@
 #import "NSDictionary+weather.h"
 #import "NSDictionary+weather_package.h"
 #import "AFJSONRequestOperation.h"
+#import "AFPropertyListRequestOperation.h"
 static NSString *const BaseURLString = @"http://www.raywenderlich.com/downloads/weather_sample/";
 
 
@@ -103,6 +104,18 @@ static NSString *const BaseURLString = @"http://www.raywenderlich.com/downloads/
 
 - (IBAction)plistTapped:(id)sender
 {
+    NSString *weatherUrl = [NSString stringWithFormat:@"%@weather.php?format=plist",BaseURLString];
+    NSURL *url = [NSURL URLWithString:weatherUrl];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    AFPropertyListRequestOperation *operation = [AFPropertyListRequestOperation propertyListRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id propertyList) {
+        self.weather = (NSDictionary *)propertyList;
+        self.title = @"PLIST Retrieved";
+        [self.tableView reloadData];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id propertyList) {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Weather" message:[NSString stringWithFormat:@"%@", error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [av show];
+    }];
+    [operation start];
 }
 
 - (IBAction)xmlTapped:(id)sender
