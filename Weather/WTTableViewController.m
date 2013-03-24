@@ -13,6 +13,7 @@
 #import "AFJSONRequestOperation.h"
 #import "AFPropertyListRequestOperation.h"
 #import "AFXMLRequestOperation.h"
+#import "UIImageView+AFNetworking.h"
 static NSString *const BaseURLString = @"http://www.raywenderlich.com/downloads/weather_sample/";
 
 
@@ -203,6 +204,23 @@ static NSString *const BaseURLString = @"http://www.raywenderlich.com/downloads/
             break;
     }
     cell.textLabel.text = [daysWeather weatherDescription];
+    
+    UITableViewCell *weakCell = cell;
+    
+    [cell.imageView setImageWithURLRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:daysWeather.weatherIconURL]]
+                          placeholderImage:[UIImage imageNamed:@"placeholder.png"]
+                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image){
+                                       weakCell.imageView.image = image;
+                                       
+                                       //only required if no placeholder is set to force the imageview on the cell to be laid out to house the new image.
+                                       //if(weakCell.imageView.frame.size.height==0 || weakCell.imageView.frame.size.width==0 ){
+                                       [weakCell setNeedsLayout];
+                                       //}
+                                   }
+                                   failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
+                                       
+                                   }];
+
     return cell;
 }
 
