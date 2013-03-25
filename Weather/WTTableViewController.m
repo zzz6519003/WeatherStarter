@@ -14,6 +14,7 @@
 #import "AFPropertyListRequestOperation.h"
 #import "AFXMLRequestOperation.h"
 #import "UIImageView+AFNetworking.h"
+#import "AFHTTPClient.h"
 static NSString *const BaseURLString = @"http://www.raywenderlich.com/downloads/weather_sample/";
 
 
@@ -148,6 +149,10 @@ static NSString *const BaseURLString = @"http://www.raywenderlich.com/downloads/
 
 - (IBAction)httpClientTapped:(id)sender
 {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"AFHTTPClient" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"HTTP POST", @"HTTP GET",nil];
+    [actionSheet showFromBarButtonItem:sender animated:YES];
+    
+    
 }
 
 - (IBAction)apiTapped:(id)sender
@@ -301,6 +306,39 @@ static NSString *const BaseURLString = @"http://www.raywenderlich.com/downloads/
     self.weather = [NSDictionary dictionaryWithObject:self.xmlWeather forKey:@"data"];
     self.title = @"XML Retrieved";
     [self.tableView reloadData];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSURL *baseURL = [NSURL URLWithString:[NSString stringWithFormat:BaseURLString]];
+    NSDictionary *parameters = [NSDictionary dictionaryWithObject:@"json" forKey:@"format"];
+    
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
+    [client registerHTTPOperationClass:[AFJSONRequestOperation class]];
+    [client setDefaultHeader:@"Accept" value:@"application/json"];
+    
+    if (buttonIndex == 0) {
+        [client postPath:@"weather.php" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            self.weather = responseObject;
+            self.title = @"HTTP POST";
+            [self.tableView reloadData];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error retrieving weather" message:[NSString stringWithFormat:@"%@", error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [av show];
+        }];
+    }
+    else if (buttonIndex == 1) {
+        [client getPath:@"weather.php" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            self.weather = responseObject;
+            self.title = @"HTTP GET";
+            [self.tableView reloadData];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Weather"
+                                                         message:[NSString stringWithFormat:@"%@",error]
+                                                        delegate:nil
+                                               cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [av show];
+        }];
+    }
 }
 
 

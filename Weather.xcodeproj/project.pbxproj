@@ -16,6 +16,7 @@
 		18765AF616F9964E001D23AD /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18765AEB16F9964E001D23AD /* AFURLConnectionOperation.m */; };
 		18765AF716F9964E001D23AD /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18765AED16F9964E001D23AD /* AFXMLRequestOperation.m */; };
 		18765AF816F9964E001D23AD /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 18765AEF16F9964E001D23AD /* UIImageView+AFNetworking.m */; };
+		1891C9DD16FFE284008FA3C0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1891C9DC16FFE284008FA3C0 /* .gitignore */; };
 		CCB3658816CA0F32003B2CB6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB3658716CA0F32003B2CB6 /* SystemConfiguration.framework */; };
 		CCB3658A16CA0F36003B2CB6 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB3658916CA0F36003B2CB6 /* MobileCoreServices.framework */; };
 		D233D07016B400EF005212DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D233D06F16B400EF005212DE /* UIKit.framework */; };
@@ -76,6 +77,7 @@
 		18765AED16F9964E001D23AD /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		18765AEE16F9964E001D23AD /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		18765AEF16F9964E001D23AD /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		1891C9DC16FFE284008FA3C0 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		CCB3658716CA0F32003B2CB6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CCB3658916CA0F36003B2CB6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D233D06B16B400EF005212DE /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +172,7 @@
 		D233D06016B400EF005212DE = {
 			isa = PBXGroup;
 			children = (
+				1891C9DC16FFE284008FA3C0 /* .gitignore */,
 				18765ADC16F9964E001D23AD /* AFNetworking */,
 				D233D07516B400EF005212DE /* Weather */,
 				D233D06E16B400EF005212DE /* Frameworks */,
@@ -338,6 +341,7 @@
 				D233D0BC16B4013D005212DE /* windycloud.png in Resources */,
 				D233D0BD16B4013D005212DE /* windycloud@2x.png in Resources */,
 				D233D11116B43004005212DE /* placeholder.png in Resources */,
+				1891C9DD16FFE284008FA3C0 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
