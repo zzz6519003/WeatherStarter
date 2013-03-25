@@ -17,6 +17,7 @@
 		18765AF716F9964E001D23AD /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18765AED16F9964E001D23AD /* AFXMLRequestOperation.m */; };
 		18765AF816F9964E001D23AD /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 18765AEF16F9964E001D23AD /* UIImageView+AFNetworking.m */; };
 		1891C9DD16FFE284008FA3C0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1891C9DC16FFE284008FA3C0 /* .gitignore */; };
+		1891C9E0170024FB008FA3C0 /* WeatherHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1891C9DF170024FB008FA3C0 /* WeatherHTTPClient.m */; };
 		CCB3658816CA0F32003B2CB6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB3658716CA0F32003B2CB6 /* SystemConfiguration.framework */; };
 		CCB3658A16CA0F36003B2CB6 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB3658916CA0F36003B2CB6 /* MobileCoreServices.framework */; };
 		D233D07016B400EF005212DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D233D06F16B400EF005212DE /* UIKit.framework */; };
@@ -78,6 +79,8 @@
 		18765AEE16F9964E001D23AD /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		18765AEF16F9964E001D23AD /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		1891C9DC16FFE284008FA3C0 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		1891C9DE170024FB008FA3C0 /* WeatherHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherHTTPClient.h; sourceTree = "<group>"; };
+		1891C9DF170024FB008FA3C0 /* WeatherHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherHTTPClient.m; sourceTree = "<group>"; };
 		CCB3658716CA0F32003B2CB6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CCB3658916CA0F36003B2CB6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D233D06B16B400EF005212DE /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -214,6 +217,8 @@
 				D233D08716B400EF005212DE /* MainStoryboard.storyboard */,
 				D233D09216B4011B005212DE /* WTTableViewController.h */,
 				D233D09316B4011B005212DE /* WTTableViewController.m */,
+				1891C9DE170024FB008FA3C0 /* WeatherHTTPClient.h */,
+				1891C9DF170024FB008FA3C0 /* WeatherHTTPClient.m */,
 				D233D0CA16B405C3005212DE /* WeatherAnimationViewController.h */,
 				D233D0CB16B405C3005212DE /* WeatherAnimationViewController.m */,
 				D233D07616B400EF005212DE /* Supporting Files */,
@@ -367,6 +372,7 @@
 				18765AF616F9964E001D23AD /* AFURLConnectionOperation.m in Sources */,
 				18765AF716F9964E001D23AD /* AFXMLRequestOperation.m in Sources */,
 				18765AF816F9964E001D23AD /* UIImageView+AFNetworking.m in Sources */,
+				1891C9E0170024FB008FA3C0 /* WeatherHTTPClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

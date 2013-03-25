@@ -47,6 +47,8 @@ static NSString *const BaseURLString = @"http://www.raywenderlich.com/downloads/
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.manager = [[CLLocationManager alloc] init];
+    self.manager.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -157,6 +159,7 @@ static NSString *const BaseURLString = @"http://www.raywenderlich.com/downloads/
 
 - (IBAction)apiTapped:(id)sender
 {
+    [self.manager startUpdatingLocation];
 }
 
 #pragma mark - Table view data source
@@ -341,5 +344,28 @@ static NSString *const BaseURLString = @"http://www.raywenderlich.com/downloads/
     }
 }
 
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    if ([newLocation.timestamp timeIntervalSinceNow] < 300) {
+        WeatherHTTPClient *client = [WeatherHTTPClient sharedWeatherHTTPClient];
+        client.delegate = self;
+        [client updateWeatherLocation:newLocation forNumberOfDays:5];
+    }
+}
+
+- (void)weatherHTTPClient:(WeatherHTTPClient *)client didFailWithError:(NSError *)error {
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Weather"
+                                                 message:[NSString stringWithFormat:@"%@",error]
+                                                delegate:nil
+                                       cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [av show];
+
+}
+
+- (void)weatherHTTPClient:(WeatherHTTPClient *)client didUpdateWithWeather:(id)weather {
+    self.weather = weather
+    ;
+    self.title = @"API Updated";
+    [self.tableView reloadData];
+}
 
 @end
