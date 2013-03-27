@@ -348,7 +348,7 @@ static NSString *const BaseURLString = @"http://www.raywenderlich.com/downloads/
     if ([newLocation.timestamp timeIntervalSinceNow] < 300) {
         WeatherHTTPClient *client = [WeatherHTTPClient sharedWeatherHTTPClient];
         client.delegate = self;
-        [client updateWeatherLocation:newLocation forNumberOfDays:5];
+        [client updateWeatherAtLocation:newLocation forNumberOfDays:5];
     }
 }
 

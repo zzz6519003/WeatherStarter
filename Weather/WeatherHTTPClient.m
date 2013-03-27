@@ -31,20 +31,47 @@
     return self;
 }
 
-- (void)updateWeatherLocation:(CLLocation *)location forNumberOfDays:(int)number {
+//- (void)updateWeatherLocation:(CLLocation *)location forNumberOfDays:(int)number {
+//    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+//    [parameters setObject:[NSString stringWithFormat:@"%d", number] forKey:@"num_of_days"];
+//    [parameters setObject:[NSString stringWithFormat:@"%f,%f", location.coordinate.latitude, location.coordinate.longitude] forKey:@"q"];
+//    [parameters setObject:@"json" forKey:@"format"];
+//    [parameters setObject:@"2th7mcsnwy8qbgmd5x549n9u" forKey:@"key"];
+//    [self getPath:@"weather.ashx" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        if ([self.delegate respondsToSelector:@selector(weatherHTTPClient:didUpdateWithWeather:)])
+//            [self.delegate weatherHTTPClient:self didUpdateWithWeather:responseObject];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        if ([self.delegate respondsToSelector:@selector(weatherHTTPClient:didFailWithError:)]) {
+//            [self.delegate weatherHTTPClient:self didFailWithError:error];
+//        }
+//    }];
+//    
+//}
+- (void)updateWeatherAtLocation:(CLLocation *)location forNumberOfDays:(int)number{
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:[NSString stringWithFormat:@"%d", number] forKey:@"num_of_days"];
-    [parameters setObject:[NSString stringWithFormat:@"%f,%f", location.coordinate.latitude, location.coordinate.longitude] forKey:@"q"];
+    [parameters setObject:[NSString stringWithFormat:@"%d",number] forKey:@"num_of_days"];
+    [parameters setObject:[NSString stringWithFormat:@"%f,%f",location.coordinate.latitude,location.coordinate.longitude] forKey:@"q"];
     [parameters setObject:@"json" forKey:@"format"];
-    [parameters setObject:@"7f3a3480fc162445131401" forKey:@"key"];
-    [self getPath:@"weather.ashx" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ([self.delegate respondsToSelector:@selector(weatherHTTPClient:didUpdateWithWeather:)])
-            [self.delegate weatherHTTPClient:self didUpdateWithWeather:responseObject];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if ([self.delegate respondsToSelector:@selector(weatherHTTPClient:didFailWithError:)]) {
-            [self.delegate weatherHTTPClient:self didFailWithError:error];
-        }
-    }];
+    [parameters setObject:@"2th7mcsnwy8qbgmd5x549n9u" forKey:@"key"];
+    
+    [self getPath:@"weather.ashx"
+       parameters:parameters
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              if([self.delegate respondsToSelector:@selector(weatherHTTPClient:didUpdateWithWeather:)])
+                  [self.delegate weatherHTTPClient:self didUpdateWithWeather:responseObject];
+          }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              if([self.delegate respondsToSelector:@selector(weatherHTTPClient:didFailWithError:)])
+                  [self.delegate weatherHTTPClient:self didFailWithError:error];
+          }];
+}
+
+-(void)weatherHTTPClient:(WeatherHTTPClient *)client didFailWithError:(NSError *)error{
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Weather"
+                                                 message:[NSString stringWithFormat:@"%@",error]
+                                                delegate:nil
+                                       cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [av show];
 }
 
 @end

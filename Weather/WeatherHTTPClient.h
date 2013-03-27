@@ -16,7 +16,7 @@
 
 + (WeatherHTTPClient *)sharedWeatherHTTPClient;
 - (id)initWithBaseURL:(NSURL *)url;
-- (void)updateWeatherLocation:(CLLocation *)location forNumberOfDays:(int)number;
+- (void)updateWeatherAtLocation:(CLLocation *)location forNumberOfDays:(int)number;
 
 @end
 
